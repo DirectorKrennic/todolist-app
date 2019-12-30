@@ -2,10 +2,17 @@ import React from 'react';
 
 class AddToDo extends React.Component {
 
+    constructor(){
+        super();
+        this.state = {
+            todo: ''
+        }
+    }
+
     render(){
         return(
             <div>
-                <form className='addToDoContainer'>
+                <form onSubmit={(e) => this.submitToDo(e)} className='addToDoContainer'>
                     <input onChange={(e) => this.updateInput(e)} type='text'></input>
                     <button type='submit'>Add ToDo</button>
                 </form>
@@ -14,7 +21,12 @@ class AddToDo extends React.Component {
     }
 
     updateInput = (e) => {
-        console.log(e);
+        this.setState({todo: e.target.value})
+    }
+
+    submitToDo = (e) => {
+        e.preventDefault();
+        this.props.addToDoFunction(this.state.todo)
     }
 }
 
