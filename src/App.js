@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import ToDoList from './ToDoList/ToDoList';
+import ToDoItem from './ToDoItem/ToDoItem';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor(){
+    super();
+    this.state = {
+      todos: []
+    }
+  }
+
+  render(){
+    return(
+      <div>
+        <ToDoList></ToDoList>
+        <ToDoItem></ToDoItem>
+      </div>
+    );
+  }
+
+  componentDidMount = () => {
+    const todos = localStorage.getItem('todos');
+    if(todos){
+      console.log('Has todos', todos);
+    }else{
+      console.log('No todos');
+    }
+  }
+
 }
 
 export default App;
