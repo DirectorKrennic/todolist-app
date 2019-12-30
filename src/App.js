@@ -1,6 +1,7 @@
 import React from 'react';
 import ToDoList from './ToDoList/ToDoList';
 import ToDoItem from './ToDoItem/ToDoItem';
+import AddToDo from './AddToDo/AddToDo';
 import './App.css';
 
 class App extends React.Component {
@@ -15,8 +16,7 @@ class App extends React.Component {
   render(){
     return(
       <div>
-        <ToDoList></ToDoList>
-        <ToDoItem></ToDoItem>
+        <AddToDo></AddToDo>
       </div>
     );
   }
@@ -24,7 +24,8 @@ class App extends React.Component {
   componentDidMount = () => {
     const todos = localStorage.getItem('todos');
     if(todos){
-      console.log('Has todos', todos);
+      const savedToDos = JSON.parse(todos);
+      this.setState({todos: savedToDos});
     }else{
       console.log('No todos');
     }
