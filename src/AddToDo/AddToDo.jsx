@@ -13,7 +13,7 @@ class AddToDo extends React.Component {
         return(
             <div>
                 <form onSubmit={(e) => this.submitToDo(e)} className='addToDoContainer'>
-                    <input onChange={(e) => this.updateInput(e)} type='text'></input>
+                    <input id='addToDoInput' onChange={(e) => this.updateInput(e)} type='text'></input>
                     <button type='submit'>Add ToDo</button>
                 </form>
             </div>
@@ -26,7 +26,8 @@ class AddToDo extends React.Component {
 
     submitToDo = (e) => {
         e.preventDefault();
-        this.props.addToDoFunction(this.state.todo)
+        this.props.addToDoFunction(this.state.todo);
+        document.getElementById('addToDoInput').value = '';
     }
 }
 
